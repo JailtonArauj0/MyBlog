@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="pt-BR"
+xmlns:th="http://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>My Blog</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+</head>
+
+<body>
+
+
+<header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light" style="padding-left: 20%; padding-right: 20%">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="/posts">MyBlog</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <a class="nav-link active" aria-current="page" href="/posts">Início</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Sobre</a>
+                    </li>
+                </ul>
+                <form class="d-flex">
+                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                </form>
+                <a class="btn btn-outline-success" style="margin-left: 5px" href="/posts/new">Novo Post</a>
+            </div>
+        </div>
+
+    </nav>
+</header>
+
+<section>
+    <div class="container" style="width: 60%; margin-top: 3%; margin-bottom: 2%">
+        <nav style="--bs-breadcrumb-divider: '>';" aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active"><p>Início</p></li>
+            </ol>
+        </nav>
+    </div>
+
+    <div class="container" style="width: 60%; margin-bottom: 10px" th:each="post : ${posts} ">
+        <div class="card text-center">
+            <div class="card-header">
+                Autor:
+                <span th:text="${post.getAuthor()}"></span>
+            </div>
+            <div class="card-body">
+                <h5 class="card-title"><span th:text="${post.getTitle()}"></span></h5>
+                <p class="card-text"><span th:utext="${#strings.abbreviate(post.getText(), 400)}"></span></p>
+                <a th:href="@{/posts/{id}(id=${post.id})}" class="btn btn-primary">Ler mais</a>
+            </div>
+            <div class="card-footer text-muted">
+                Data de Publicação:
+                <span th:text="${post.getDate()}"></span>
+            </div>
+        </div>
+    </div>
+
+</section>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+</body>
+
+</html>
