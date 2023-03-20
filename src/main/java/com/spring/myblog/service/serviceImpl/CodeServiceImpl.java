@@ -28,4 +28,9 @@ public class CodeServiceImpl implements CodeBlogService {
     public Post save(Post post) {
         return codeBlogRepository.save(post);
     }
+
+    @Override
+    public List<Post> findByTitle(String title) {
+        return codeBlogRepository.findByTitle(title);
+    }
 }

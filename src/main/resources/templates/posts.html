@@ -27,9 +27,9 @@ xmlns:th="http://www.thymeleaf.org">
                         <a class="nav-link" href="#">Sobre</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn btn-outline-dark" type="submit">Search</button>
+                <form class="d-flex" method="post" action="/posts/search">
+                    <input class="form-control me-2" type="search" placeholder="Procurar artigo" aria-label="Search" name="title">
+                    <button class="btn btn-outline-dark" type="submit">Buscar</button>
                 </form>
                 <a class="btn btn-outline-success" style="margin-left: 5px" href="/posts/new">Novo Post</a>
             </div>
